@@ -22,11 +22,9 @@ class Constants {
         "Accept": "application/json",
       };
   static Future<Map<String, String>> get profileHeader async => {
-        // "Authorization": "Bearer ${await AuthService.token}",
         "Authorization": "Bearer ${await AuthService.token}",
       };
   static Future<Map<String, String>> get headers async => {
-        // "Authorization": "Bearer ${await AuthService.token}",
         "Authorization": "Bearer ${await AuthService.token}",
         "Content-Type": "application/json",
         "Accept": "application/json",
