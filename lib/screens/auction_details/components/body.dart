@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:mazzad/controller/bidders_controller.dart';
 import 'package:mazzad/controller/details_controller.dart';
 
 import '../../../components/auction_item.dart';
@@ -37,6 +38,7 @@ class _BodyState extends State<Body> {
     return GetBuilder<DetailsController>(
         init: DetailsController(),
         builder: (detailsController) {
+          print('---> body_id: ${detailsController.argumentsValues!['id']}');
           AuctionController.recordUserBehavior(
               auctionId: detailsController.argumentsValues!['id'],
               action: "view");
@@ -107,7 +109,7 @@ class _BodyState extends State<Body> {
                           ),
                           Constants.kBigVertcialSpacing,
                           TopFiveBiddersCarousalSlider(
-                            bidders: Constants.kDummyTopFiveBidders,
+                            auction_id: detailsController.argumentsValues!['id'],
                           ),
                           Constants.kBigVertcialSpacing,
                           const Text(

@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:cron/cron.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
@@ -10,6 +12,7 @@ import 'package:logger/logger.dart';
 import 'package:mazzad/controller/auction_controller.dart';
 import 'package:mazzad/controller/auctions_by_category_controller.dart';
 import 'package:mazzad/controller/auctions_by_user_id_controller.dart';
+import 'package:mazzad/controller/bidders_controller.dart';
 import 'package:mazzad/controller/categories_controller.dart';
 import 'package:mazzad/controller/details_controller.dart';
 import 'package:mazzad/controller/home_controller.dart';
@@ -37,6 +40,7 @@ bool? initScreen;
 void main() async {
   Logger.level = Level.error;
   await GetStorage.init();
+  HttpOverrides.global = MyHttpOverrides();
   // firebase intilaization
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
@@ -156,5 +160,15 @@ class Binding extends Bindings {
     Get.lazyPut(() => AuctionsByUserIdController(), fenix: true);
     Get.lazyPut(() => CategoriesController(), fenix: true);
     Get.lazyPut(() => AuctionsByCategoryController(), fenix: false);
+  }
+}
+
+// متشلش ده والا البعبع هيطلعلك
+class MyHttpOverrides extends HttpOverrides {
+  @override
+  HttpClient createHttpClient(SecurityContext? context) {
+    return super.createHttpClient(context)
+      ..badCertificateCallback =
+          (X509Certificate cert, String host, int port) => true;
   }
 }
