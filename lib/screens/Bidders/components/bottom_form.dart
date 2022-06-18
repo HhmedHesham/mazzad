@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mazzad/components/default_button.dart';
+import 'package:mazzad/components/dialogs/app_dialog.dart';
 import 'package:mazzad/constants.dart';
 import 'package:mazzad/size_config.dart';
 
@@ -60,6 +61,8 @@ class BottomForm extends StatelessWidget {
               Expanded(
                 child: DefaultButton(
                   onPressed: () {
+                    AppDialog.showAuctionPlacedDialog(
+                        context, 'you have been bid successfully');
                     AuctionController.recordUserBehavior(
                         auctionId: auction_id!, action: "bid");
                   },

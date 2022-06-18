@@ -75,46 +75,61 @@ class AddAuctionScreen extends StatelessWidget {
           ),
           const SizedBox(height: 10),
           // Constants.kSmallVerticalSpacing,
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Expanded(
-                flex: 1,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const Text(
-                      'Auciton Types',
-                      style: TextStyle(color: Colors.grey),
-                    ),
-                    MyDropDownButton(
-                      myDropDownItems: Status.values
-                          .map((e) => {
-                                'name': e.name,
-                                'id': e.index.toString(),
-                              })
-                          .toList(),
-                      isAuctionType: true,
-                    ),
-                  ],
-                ),
+              const Text(
+                'Auciton Types',
+                style: TextStyle(color: Colors.grey),
               ),
-              Column(
-                mainAxisSize: MainAxisSize.min,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const Text(
-                    'Category',
-                    style: TextStyle(color: Colors.grey),
-                  ),
-                  MyDropDownButton(
-                    myDropDownItems: categoriesController.categoriesNameAndId,
-                    isAuctionType: false,
-                  ),
-                ],
+              MyDropDownButton(
+                myDropDownItems: Status.values
+                    .map((e) => {
+                          'name': e.name,
+                          'id': e.index.toString(),
+                        })
+                    .toList(),
+                isAuctionType: true,
               ),
             ],
           ),
+          Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const Text(
+                'Category',
+                style: TextStyle(color: Colors.grey),
+              ),
+              MyDropDownButton(
+                myDropDownItems: categoriesController.categoriesNameAndId,
+                isAuctionType: false,
+              ),
+            ],
+          ),
+          // Row(
+          //   mainAxisAlignment: MainAxisAlignment.spaceAround,
+          //   children: [
+          //     Expanded(
+          //       flex: 1,
+          //       child:
+          //     ),
+          //     Column(
+          //       mainAxisSize: MainAxisSize.min,
+          //       crossAxisAlignment: CrossAxisAlignment.start,
+          //       children: [
+          //         const Text(
+          //           'Category',
+          //           style: TextStyle(color: Colors.grey),
+          //         ),
+          //         MyDropDownButton(
+          //           myDropDownItems: categoriesController.categoriesNameAndId,
+          //           isAuctionType: false,
+          //         ),
+          //       ],
+          //     ),
+          //   ],
+          // ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [

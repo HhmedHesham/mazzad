@@ -12,19 +12,20 @@ class AppDialog {
         return Center(
           child: Dialog(
             child: Padding(
-              padding: const EdgeInsets.symmetric(
-                  horizontal: Constants.kHorizontalSpacing),
+              padding: const EdgeInsets.all(Constants.kHorizontalSpacing),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisSize: MainAxisSize.min,
                 children: [
                   Text(
                     title,
                     style: const TextStyle(fontSize: 20),
+                    textAlign: TextAlign.center,
                   ),
                   Constants.kBigVertcialSpacing,
                   Lottie.asset('assets/lotties/changes_check.json',
-                      height: 200),
+                      height: MediaQuery.of(context).size.height * 0.4),
                 ],
               ),
             ),
@@ -45,25 +46,23 @@ class AppDialog {
       context: context,
       builder: (context) {
         return Center(
-          child: Container(
-            decoration: BoxDecoration(borderRadius: BorderRadius.circular(20)),
-            child: Dialog(
-              child: Padding(
-                padding: const EdgeInsets.symmetric(
-                    horizontal: Constants.kHorizontalSpacing),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Text(
-                      title,
-                      style: const TextStyle(fontSize: 20),
-                    ),
-                    Constants.kBigVertcialSpacing,
-                    Lottie.asset('assets/lotties/contact_us_send.json',
-                        height: 200),
-                  ],
-                ),
+          child: Dialog(
+            child: Padding(
+              padding: const EdgeInsets.all(Constants.kHorizontalSpacing),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Text(
+                    title,
+                    style: const TextStyle(fontSize: 20),
+                    textAlign: TextAlign.center,
+                  ),
+                  Constants.kBigVertcialSpacing,
+                  Lottie.asset('assets/lotties/contact_us_send.json',
+                      height: MediaQuery.of(context).size.height * 0.4),
+                ],
               ),
             ),
           ),
@@ -83,27 +82,23 @@ class AppDialog {
       context: context,
       builder: (context) {
         return Center(
-          child: Container(
-            decoration: BoxDecoration(borderRadius: BorderRadius.circular(20)),
-            child: Dialog(
-              child: Center(
-                child: Padding(
-                  padding: const EdgeInsets.all(Constants.kHorizontalSpacing),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Text(
-                        title,
-                        style: const TextStyle(fontSize: 20),
-                        textAlign: TextAlign.center,
-                      ),
-                      Constants.kBigVertcialSpacing,
-                      Lottie.asset('assets/lotties/auction_placed.json',
-                          height: 200),
-                    ],
+          child: Dialog(
+            child: Padding(
+              padding: const EdgeInsets.all(Constants.kHorizontalSpacing),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Text(
+                    title,
+                    style: const TextStyle(fontSize: 20),
+                    textAlign: TextAlign.center,
                   ),
-                ),
+                  Constants.kBigVertcialSpacing,
+                  Lottie.asset('assets/lotties/auction_placed.json',
+                      height: MediaQuery.of(context).size.height * 0.4),
+                ],
               ),
             ),
           ),

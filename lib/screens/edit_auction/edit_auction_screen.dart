@@ -39,7 +39,7 @@ class EditAuctionScreen extends StatelessWidget {
     startDateTextValue = myAuction.start_date;
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Add Auction'),
+        title: const Text('Edit Auction'),
       ),
       body: GetBuilder<AuctionsByUserIdController>(
           init: AuctionsByUserIdController(),
@@ -107,58 +107,49 @@ class EditAuctionScreen extends StatelessWidget {
                       ),
                       const SizedBox(height: 10),
                       // Constants.kSmallVerticalSpacing,
-                      Expanded(
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceAround,
-                          children: [
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                const Text(
-                                  'Auciton Types',
-                                  style: TextStyle(color: Colors.grey),
-                                ),
-                                MyDropDownButton(
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          const Text(
+                            'Auciton Types',
+                            style: TextStyle(color: Colors.grey),
+                          ),
+                          MyDropDownButton(
+                            auctionController: auctionController,
+                            myDropDownItems: Status.values
+                                .map((e) => {
+                                      'name': e.name,
+                                      'id': e.index.toString(),
+                                    })
+                                .toList(),
+                            isAuctionType: true,
+                            myAuctionType: myAuction.type.name,
+                            myAuctionCategoryId: myAuction.category_id,
+                          ),
+                        ],
+                      ),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          const Text(
+                            'Category',
+                            style: TextStyle(color: Colors.grey),
+                          ),
+                          (!Get.find<CategoriesController>().initialized &&
+                                  !auctionController.initialized)
+                              ? const Center(child: CircularProgressIndicator())
+                              : MyDropDownButton(
                                   auctionController: auctionController,
-                                  myDropDownItems: Status.values
-                                      .map((e) => {
-                                            'name': e.name,
-                                            'id': e.index.toString(),
-                                          })
-                                      .toList(),
-                                  isAuctionType: true,
+                                  myDropDownItems:
+                                      Get.find<CategoriesController>()
+                                          .categoriesNameAndId,
+                                  isAuctionType: false,
                                   myAuctionType: myAuction.type.name,
                                   myAuctionCategoryId: myAuction.category_id,
                                 ),
-                              ],
-                            ),
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                const Text(
-                                  'Category',
-                                  style: TextStyle(color: Colors.grey),
-                                ),
-                                (!Get.find<CategoriesController>()
-                                            .initialized &&
-                                        !auctionController.initialized)
-                                    ? const Center(
-                                        child: CircularProgressIndicator())
-                                    : MyDropDownButton(
-                                        auctionController: auctionController,
-                                        myDropDownItems:
-                                            Get.find<CategoriesController>()
-                                                .categoriesNameAndId,
-                                        isAuctionType: false,
-                                        myAuctionType: myAuction.type.name,
-                                        myAuctionCategoryId:
-                                            myAuction.category_id,
-                                      ),
-                              ],
-                            ),
-                          ],
-                        ),
+                        ],
                       ),
+
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [

@@ -82,7 +82,7 @@ class _MyAuctionsScreenState extends State<MyAuctionsScreen> {
                     if (_selectedTabBar == 0) {
                       return LiveByUserId();
                     } else if (_selectedTabBar == 1) {
-                      return ScheduledByUserId();
+                      return const ScheduledByUserId();
                     } else {
                       return LiveByUserId();
                     }
@@ -104,7 +104,7 @@ class LiveByUserId extends StatefulWidget {
 
 class _LiveByUserIdState extends State<LiveByUserId> {
   final RefreshController refreshController = RefreshController(
-    initialRefresh: true,
+    initialRefresh: false,
   );
 
   // var isLoading1 = true.obs;
@@ -195,7 +195,7 @@ class _ScheduledByUserIdState extends State<ScheduledByUserId> {
   // final controller = Get.find<AuctionController>();
 
   final RefreshController refreshController = RefreshController(
-    initialRefresh: true,
+    initialRefresh: false,
   );
 
   // var isLoading1 = true.obs;
