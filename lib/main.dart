@@ -12,15 +12,17 @@ import 'package:logger/logger.dart';
 import 'package:mazzad/controller/auction_controller.dart';
 import 'package:mazzad/controller/auctions_by_category_controller.dart';
 import 'package:mazzad/controller/auctions_by_user_id_controller.dart';
-import 'package:mazzad/controller/bidders_controller.dart';
 import 'package:mazzad/controller/categories_controller.dart';
 import 'package:mazzad/controller/details_controller.dart';
 import 'package:mazzad/controller/home_controller.dart';
 import 'package:mazzad/controller/my_auctions_controller.dart';
 import 'package:mazzad/controller/profile_controller.dart';
 import 'package:mazzad/controller/text_field_controller.dart';
+import 'package:mazzad/screens/home/home_screen.dart';
+import 'package:mazzad/screens/login/login_screen.dart';
 import 'package:mazzad/screens/onboard/on_board_screen.dart';
 import 'package:mazzad/services/fcm_service.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import './/constants.dart';
 import './/firebase_options.dart';
@@ -36,7 +38,6 @@ Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
   }
 }
 
-bool? initScreen;
 void main() async {
   Logger.level = Level.error;
   await GetStorage.init();
@@ -79,7 +80,7 @@ void main() async {
 
   // update access_token each 20 min
   cron.schedule(
-    Schedule.parse('*/20 * * * *'),
+    Schedule.parse('*/1 * * * *'),
     () async {
       if (await AuthService.isLoggedIn) {
         AuthService.updateToken(refreshToken: await AuthService.refreshToken);
@@ -107,21 +108,23 @@ class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
 
   Future<Widget> getUser() async {
-    if (initScreen == null || initScreen == false) {
-      return const OnBoardScreen();
-    }
-
-    if (await AuthService.isLoggedIn) {
+    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+    bool? showOnBoard = sharedPreferences.getBool("onBoard");
+    if (showOnBoard != null &&
+        await AuthService.token != "empty access_token") {
       int duration = await AuthService.box.read("duration");
       DateTime dateTime = DateTime.fromMillisecondsSinceEpoch(duration);
       if (DateTime.now().isAfter(dateTime)) {
         String refreshToken = AuthService.box.read("refresh_token").toString();
         AuthService.updateToken(refreshToken: refreshToken);
       }
+      return const HomeScreen();
+    } else if (showOnBoard != null) {
+      return LoginScreen();
+    } else {
+      await sharedPreferences.setBool("onBoard", false);
       return const OnBoardScreen();
     }
-
-    return const OnBoardScreen();
   }
 
   @override
