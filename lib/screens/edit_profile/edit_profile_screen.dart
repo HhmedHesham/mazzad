@@ -8,7 +8,7 @@ import '../../constants.dart';
 import '../../controller/layout_controller.dart';
 import '../../controller/text_field_controller.dart';
 import '../../models/profile/profile.dart';
-import '../../services/validator.dart';
+import '../../utils/validator.dart';
 
 class EditProfileScreen extends StatefulWidget {
   const EditProfileScreen({Key? key}) : super(key: key);

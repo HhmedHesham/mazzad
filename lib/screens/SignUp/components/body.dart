@@ -10,7 +10,7 @@ import 'package:mazzad/screens/SignUp/components/background.dart';
 import 'package:mazzad/screens/home/home_screen.dart';
 import 'package:mazzad/screens/login/login_screen.dart';
 import 'package:mazzad/services/auth_service.dart';
-import 'package:mazzad/services/validator.dart';
+import 'package:mazzad/utils/validator.dart';
 
 import '../../../utils/size_config.dart';
 

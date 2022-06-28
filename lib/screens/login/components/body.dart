@@ -13,8 +13,8 @@ import '../../../screens/SignUp/signup_screen.dart';
 import '../../../screens/home/home_screen.dart';
 import '../../../screens/login/components/background.dart';
 import '../../../services/auth_service.dart';
-import '../../../services/validator.dart';
 import '../../../utils/size_config.dart';
+import '../../../utils/validator.dart';
 
 class Body extends StatefulWidget {
   const Body({Key? key}) : super(key: key);
