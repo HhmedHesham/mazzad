@@ -169,9 +169,10 @@ class AuctionService {
             .withQueryParameters(queryParameters),
         headers: await Constants.profileHeader,
       );
-
       if (response.statusCode == 200) {
         final resbody = json.decode(response.body);
+        print('ddddddddddddddddddddddddddddddddd');
+        print(resbody['data']);
         if (type == Status.live) {
           Get.find<AuctionController>()
               .updateLiveNextPage(newNextPage: resbody['data']['next_cursor']);
@@ -201,7 +202,8 @@ class AuctionService {
       };
       final response = await http.get(
         // Uri.parse('${Constants.api}/auction?user_id=2')
-        Uri.parse('${Constants.api}/auction?user_id=${Get.find<MyAuctionsController>().userId}')
+        Uri.parse(
+                '${Constants.api}/auction?user_id=${Get.find<MyAuctionsController>().userId}')
             .withQueryParameters(queryParameters),
         headers: await Constants.profileHeader,
       );

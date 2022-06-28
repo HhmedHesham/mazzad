@@ -5,8 +5,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:mazzad/services/auth_service.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 
-import './models/bidder/bidder.dart';
-import 'size_config.dart';
+import 'utils/size_config.dart';
 
 class Constants {
   static String get api => _api;
@@ -22,11 +21,9 @@ class Constants {
         "Accept": "application/json",
       };
   static Future<Map<String, String>> get profileHeader async => {
-        // "Authorization": "Bearer ${await AuthService.token}",
         "Authorization": "Bearer ${await AuthService.token}",
       };
   static Future<Map<String, String>> get headers async => {
-        // "Authorization": "Bearer ${await AuthService.token}",
         "Authorization": "Bearer ${await AuthService.token}",
         "Content-Type": "application/json",
         "Accept": "application/json",
@@ -133,57 +130,4 @@ class Constants {
       ),
     ),
   );
-
-//DUMMY DATA
-  static const List<String> kDummyImgs = [
-    'assets/images/home.jpg',
-    'assets/images/product.jpeg',
-    'assets/images/product1.png',
-  ];
-
-  static List<Bidder> kDummyTopFiveBidders = [
-    Bidder(
-        name: 'Bidder Name',
-        price: '1080',
-        date: DateTime.now(),
-        image: 'assets/images/profile_pic.png'),
-    Bidder(
-        name: 'Bidder Name',
-        price: '1080',
-        date: DateTime.now(),
-        image: 'assets/images/profile_pic.png'),
-    Bidder(
-        name: 'Bidder Name',
-        price: '1080',
-        date: DateTime.now(),
-        image: 'assets/images/profile_pic.png'),
-    Bidder(
-        name: 'Bidder Name',
-        price: '1080',
-        date: DateTime.now(),
-        image: 'assets/images/profile_pic.png'),
-    Bidder(
-        name: 'Bidder Name',
-        price: '1080',
-        date: DateTime.now(),
-        image: 'assets/images/profile_pic.png'),
-  ];
-  static List<Bidder> kDummyBiddersList = [
-    const Bidder(name: 'Malia Renault', price: '1080'),
-    const Bidder(name: 'Malia Renault', price: '1080'),
-    const Bidder(name: 'Malia Renault', price: '1080'),
-    const Bidder(name: 'Malia Renault', price: '1080'),
-    const Bidder(name: 'Malia Renault', price: '1080'),
-    const Bidder(name: 'Malia Renault', price: '1080'),
-    const Bidder(name: 'Malia Renault', price: '1080'),
-    const Bidder(name: 'Malia Renault', price: '1080'),
-    const Bidder(name: 'Malia Renault', price: '1080'),
-    const Bidder(name: 'Malia Renault', price: '1080'),
-    const Bidder(name: 'Malia Renault', price: '1080'),
-    const Bidder(name: 'Malia Renault', price: '1080'),
-    const Bidder(name: 'Malia Renault', price: '1080'),
-    const Bidder(name: 'Malia Renault', price: '1080'),
-    const Bidder(name: 'Malia Renault', price: '1080'),
-    const Bidder(name: 'Malia Renault', price: '1080'),
-  ];
 }

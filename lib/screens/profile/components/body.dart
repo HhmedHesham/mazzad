@@ -12,7 +12,7 @@ import '../../../screens/my_auctions/my_auctions_screen.dart';
 import '../../../screens/privacy_and_policy/privacy_and_policy_screen.dart';
 import '../../../screens/profile/components/small_clipper.dart';
 import '../../../screens/terms_of_use/terms_of_use_screen.dart';
-import '../../../size_config.dart';
+import '../../../utils/size_config.dart';
 import '../../login/login_screen.dart';
 import '../clip_shadow_path.dart';
 

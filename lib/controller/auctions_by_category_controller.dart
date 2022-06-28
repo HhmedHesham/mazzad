@@ -24,18 +24,17 @@ class AuctionsByCategoryController extends GetxController with StateMixin {
       _scheduledAuctionsByCategory;
   Rx<int> get scheduledAuctionsByCategoryLength =>
       _scheduledAuctionsByCategory.length.obs;
+  Status? auctionType;
 
   void updateCategoryId(int id) {
     categoryId = id;
     update();
   }
 
-  String? anyFunc;
-
-  AuctionsByCategoryController({this.anyFunc}) {
-    if (anyFunc == 'live') {
+  AuctionsByCategoryController({this.auctionType}) {
+    if (auctionType == Status.live.name) {
       getLiveAuctionsByCategory();
-    } else if (anyFunc == 'scheduled') {
+    } else if (auctionType == Status.scheduled.name) {
       getScheduledAuctionsByCategory();
     }
   }
@@ -49,8 +48,6 @@ class AuctionsByCategoryController extends GetxController with StateMixin {
     _scheduledAuctionByCategoryNextPage.value = newNextPage;
     update();
   }
-
-  var _isLoading1 = true;
 
   Future<bool> getLiveAuctionsByCategory({bool isRefresh = false}) async {
     try {

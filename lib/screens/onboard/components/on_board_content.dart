@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:mazzad/constants.dart';
-import 'package:mazzad/size_config.dart';
+import 'package:mazzad/utils/size_config.dart';
 
 class OnBoardContent extends StatelessWidget {
   final String? image;

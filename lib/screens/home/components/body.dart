@@ -13,11 +13,11 @@ import '../../../controller/auctions_by_category_controller.dart';
 import '../../../controller/categories_controller.dart';
 import '../../../screens/categories/categories_screen.dart';
 import '../../../screens/notifications/notifications_screen.dart';
-import '../../../size_config.dart';
+import '../../../utils/size_config.dart';
 import '../../auctions_category/auctions_by_category_screen.dart';
 
 class Body extends StatefulWidget {
-  Body({Key? key}) : super(key: key);
+  const Body({Key? key}) : super(key: key);
 
   @override
   State<Body> createState() => _BodyState();

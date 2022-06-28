@@ -6,7 +6,7 @@ import './contact_us_info.dart';
 import '../../../components/default_button.dart';
 import '../../../components/default_text_field.dart';
 import '../../../constants.dart';
-import '../../../services/validator.dart';
+import '../../../utils/validator.dart';
 
 class Body extends StatelessWidget {
   const Body({

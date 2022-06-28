@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:cron/cron.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
@@ -16,13 +18,16 @@ import 'package:mazzad/controller/home_controller.dart';
 import 'package:mazzad/controller/my_auctions_controller.dart';
 import 'package:mazzad/controller/profile_controller.dart';
 import 'package:mazzad/controller/text_field_controller.dart';
+import 'package:mazzad/screens/home/home_screen.dart';
+import 'package:mazzad/screens/login/login_screen.dart';
 import 'package:mazzad/screens/onboard/on_board_screen.dart';
 import 'package:mazzad/services/fcm_service.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import './/constants.dart';
 import './/firebase_options.dart';
 import './/services/auth_service.dart';
-import './router.dart' as router;
+import 'utils/router.dart' as router;
 
 // the handler of Bckg message its work on its isloate ' on its own thread '
 // receive message when its on bckg
@@ -33,10 +38,10 @@ Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
   }
 }
 
-bool? initScreen;
 void main() async {
   Logger.level = Level.error;
   await GetStorage.init();
+  HttpOverrides.global = MyHttpOverrides();
   // firebase intilaization
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
@@ -75,7 +80,7 @@ void main() async {
 
   // update access_token each 20 min
   cron.schedule(
-    Schedule.parse('*/20 * * * *'),
+    Schedule.parse('*/1 * * * *'),
     () async {
       if (await AuthService.isLoggedIn) {
         AuthService.updateToken(refreshToken: await AuthService.refreshToken);
@@ -103,21 +108,23 @@ class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
 
   Future<Widget> getUser() async {
-    if (initScreen == null || initScreen == false) {
-      return const OnBoardScreen();
-    }
-
-    if (await AuthService.isLoggedIn) {
+    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+    bool? showOnBoard = sharedPreferences.getBool("onBoard");
+    if (showOnBoard != null &&
+        await AuthService.token != "empty access_token") {
       int duration = await AuthService.box.read("duration");
       DateTime dateTime = DateTime.fromMillisecondsSinceEpoch(duration);
       if (DateTime.now().isAfter(dateTime)) {
         String refreshToken = AuthService.box.read("refresh_token").toString();
         AuthService.updateToken(refreshToken: refreshToken);
       }
+      return const HomeScreen();
+    } else if (showOnBoard != null) {
+      return LoginScreen();
+    } else {
+      await sharedPreferences.setBool("onBoard", false);
       return const OnBoardScreen();
     }
-
-    return const OnBoardScreen();
   }
 
   @override
@@ -156,5 +163,15 @@ class Binding extends Bindings {
     Get.lazyPut(() => AuctionsByUserIdController(), fenix: true);
     Get.lazyPut(() => CategoriesController(), fenix: true);
     Get.lazyPut(() => AuctionsByCategoryController(), fenix: false);
+  }
+}
+
+// متشلش ده والا البعبع هيطلعلك
+class MyHttpOverrides extends HttpOverrides {
+  @override
+  HttpClient createHttpClient(SecurityContext? context) {
+    return super.createHttpClient(context)
+      ..badCertificateCallback =
+          (X509Certificate cert, String host, int port) => true;
   }
 }

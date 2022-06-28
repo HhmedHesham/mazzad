@@ -2,109 +2,114 @@
 
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:intl/intl.dart';
+import 'package:mazzad/controller/bidders_controller.dart';
 
 import '../../../constants.dart';
-import '../../../models/bidder/bidder.dart';
-import '../../../size_config.dart';
+import '../../../utils/size_config.dart';
 
-class TopFiveBiddersCarousalSlider extends StatefulWidget {
-  final List<Bidder>? bidders;
-  const TopFiveBiddersCarousalSlider({this.bidders});
-  @override
-  State<TopFiveBiddersCarousalSlider> createState() =>
-      _TopFiveBiddersCarousalSliderState();
-}
+class TopFiveBiddersCarousalSlider extends StatelessWidget {
+  // final List<Bidder>? bidders;
+  final int? auction_id;
+  const TopFiveBiddersCarousalSlider({this.auction_id});
 
-class _TopFiveBiddersCarousalSliderState
-    extends State<TopFiveBiddersCarousalSlider> {
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.stretch,
-      children: [
-        Padding(
-          padding: EdgeInsets.symmetric(
-            horizontal: Constants.kHorizontalSpacing,
-          ),
-          child: Text(
-            'Top 5 Bidders',
-            textAlign: TextAlign.start,
-            style: TextStyle(
-              fontWeight: FontWeight.bold,
-              fontSize: getProportionateScreenWidth(18),
-            ),
-          ),
-        ),
-        CarouselSlider(
-          items: widget.bidders!
-              .map(
-                (bidder) => Card(
-                  elevation: 10,
-                  child: ListTile(
-                    onTap: () {},
-                    leading: CircleAvatar(
-                      radius: 23,
-                      backgroundColor: Colors.transparent,
-                      backgroundImage: AssetImage(
-                          bidder.image ?? 'assets/images/profile_pic.png'),
+    return GetBuilder<BiddersController>(
+        init: BiddersController(auction_id!),
+        builder: (biddersController) {
+          return (!biddersController.initialized)
+              ? const Center(child: CircularProgressIndicator())
+              : Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    Padding(
+                      padding: EdgeInsets.symmetric(
+                        horizontal: Constants.kHorizontalSpacing,
+                      ),
+                      child: Text(
+                        'Top 5 Bidders',
+                        textAlign: TextAlign.start,
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: getProportionateScreenWidth(18),
+                        ),
+                      ),
                     ),
-                    title: SingleChildScrollView(
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          RichText(
-                            text: TextSpan(
-                              children: [
-                                TextSpan(
-                                  text: 'Bid By ',
-                                  style: TextStyle(
-                                    color: Colors.grey,
+                    CarouselSlider(
+                      items: biddersController.topFivebiddersList
+                          .map(
+                            (bidder) => Card(
+                              elevation: 10,
+                              child: ListTile(
+                                onTap: () {},
+                                leading: CircleAvatar(
+                                  radius: 23,
+                                  backgroundColor: Colors.transparent,
+                                  backgroundImage: AssetImage(
+                                      'assets/images/profile_pic.png'),
+                                ),
+                                title: SingleChildScrollView(
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      RichText(
+                                        text: TextSpan(
+                                          children: [
+                                            TextSpan(
+                                              text: 'Bid By ',
+                                              style: TextStyle(
+                                                color: Colors.grey,
+                                              ),
+                                            ),
+                                            TextSpan(
+                                              text: bidder['name'] ?? "unkwon",
+                                              style: TextStyle(
+                                                fontWeight: FontWeight.bold,
+                                                fontSize: 15,
+                                                color: Colors.black,
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                      Text(
+                                        DateFormat('yMMMMd')
+                                            .format(DateTime.parse(
+                                                    bidder['created_at']) ??
+                                                DateTime.now())
+                                            .toString(),
+                                        style: TextStyle(
+                                          color: Colors.grey,
+                                          fontSize: 14,
+                                        ),
+                                      ),
+                                    ],
                                   ),
                                 ),
-                                TextSpan(
-                                  text: bidder.name ?? "unkwon",
+                                trailing: Text(
+                                  '\$${bidder['price'] ?? 0.0}',
                                   style: TextStyle(
                                     fontWeight: FontWeight.bold,
-                                    fontSize: 15,
-                                    color: Colors.black,
+                                    fontSize: 20,
                                   ),
                                 ),
-                              ],
+                              ),
                             ),
-                          ),
-                          Text(
-                            DateFormat('yMMMMd')
-                                .format(bidder.date ?? DateTime.now())
-                                .toString(),
-                            style: TextStyle(
-                              color: Colors.grey,
-                              fontSize: 14,
-                            ),
-                          ),
-                        ],
+                          )
+                          .toList(),
+                      options: CarouselOptions(
+                        autoPlay: false,
+                        enableInfiniteScroll: false,
+                        enlargeCenterPage: true,
+                        height: 64,
                       ),
                     ),
-                    trailing: Text(
-                      '\$${bidder.price ?? 0.0}',
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 20,
-                      ),
-                    ),
-                  ),
-                ),
-              )
-              .toList(),
-          options: CarouselOptions(
-            autoPlay: false,
-            enableInfiniteScroll: false,
-            enlargeCenterPage: true,
-            height: 64,
-          ),
-        ),
-      ],
-    );
+                  ],
+                );
+        });
   }
 }

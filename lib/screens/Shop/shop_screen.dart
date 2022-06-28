@@ -4,7 +4,7 @@ import 'package:lottie/lottie.dart';
 import 'package:mazzad/controller/home_controller.dart';
 
 import '../../constants.dart';
-import '../../size_config.dart';
+import '../../utils/size_config.dart';
 
 class ShopScreen extends StatelessWidget {
   static const routeName = '/shop_screen';

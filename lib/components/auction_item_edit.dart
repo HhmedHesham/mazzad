@@ -8,7 +8,7 @@ import 'package:mazzad/screens/my_auctions/my_auctions_screen.dart';
 import '../controller/details_controller.dart';
 import '../models/auction/auction.dart';
 import '../screens/add_auction/add_auction_screen.dart';
-import '../size_config.dart';
+import '../utils/size_config.dart';
 
 class AuctionItemEdit extends StatelessWidget {
   final Auction myAuction;
@@ -90,7 +90,8 @@ class AuctionItemEdit extends StatelessWidget {
                         ),
                         child: IconButton(
                           onPressed: () {
-                            Get.off(() => EditAuctionScreen(myAuction: myAuction));
+                            Get.off(
+                                () => EditAuctionScreen(myAuction: myAuction));
                           },
                           icon: const Icon(Icons.edit),
                         ),
