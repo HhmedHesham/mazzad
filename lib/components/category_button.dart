@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
-import '../size_config.dart';
+import '../utils/size_config.dart';
 
 class CategoryButton extends StatelessWidget {
   const CategoryButton({

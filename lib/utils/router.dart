@@ -2,22 +2,22 @@ import 'package:flutter/material.dart';
 import 'package:mazzad/screens/add_auction/add_auction_screen.dart';
 import 'package:mazzad/utils/logger.dart';
 
-import './screens/SignUp/signup_screen.dart';
-import './screens/auction_details/auction_details_screen.dart';
-import './screens/auctions/auctions.dart';
-import './screens/categories/categories_screen.dart';
-import './screens/contact_us/contact_us_screen.dart';
-import './screens/edit_profile/edit_profile_screen.dart';
-import './screens/home/home_screen.dart';
-import './screens/login/login_screen.dart';
-import './screens/my_auctions/my_auctions_screen.dart';
-import './screens/notifications/notifications_screen.dart';
-import './screens/onboard/on_board_screen.dart';
-import './screens/otb/otb_screen.dart';
-import './screens/privacy_and_policy/privacy_and_policy_screen.dart';
-import './screens/profile/profile_screen.dart';
-import './screens/terms_of_use/terms_of_use_screen.dart';
-import 'screens/Bidders/main_bidders.dart';
+import '../screens/Bidders/main_bidders.dart';
+import '../screens/SignUp/signup_screen.dart';
+import '../screens/auction_details/auction_details_screen.dart';
+import '../screens/auctions/auctions.dart';
+import '../screens/categories/categories_screen.dart';
+import '../screens/contact_us/contact_us_screen.dart';
+import '../screens/edit_profile/edit_profile_screen.dart';
+import '../screens/home/home_screen.dart';
+import '../screens/login/login_screen.dart';
+import '../screens/my_auctions/my_auctions_screen.dart';
+import '../screens/notifications/notifications_screen.dart';
+import '../screens/onboard/on_board_screen.dart';
+import '../screens/otb/otb_screen.dart';
+import '../screens/privacy_and_policy/privacy_and_policy_screen.dart';
+import '../screens/profile/profile_screen.dart';
+import '../screens/terms_of_use/terms_of_use_screen.dart';
 
 final log = getLogger('Router');
 

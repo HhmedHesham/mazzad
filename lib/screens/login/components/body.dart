@@ -14,7 +14,7 @@ import '../../../screens/home/home_screen.dart';
 import '../../../screens/login/components/background.dart';
 import '../../../services/auth_service.dart';
 import '../../../services/validator.dart';
-import '../../../size_config.dart';
+import '../../../utils/size_config.dart';
 
 class Body extends StatefulWidget {
   const Body({Key? key}) : super(key: key);

@@ -7,8 +7,7 @@ import 'package:intl/intl.dart';
 import 'package:mazzad/controller/bidders_controller.dart';
 
 import '../../../constants.dart';
-import '../../../models/bidder/bidder.dart';
-import '../../../size_config.dart';
+import '../../../utils/size_config.dart';
 
 class TopFiveBiddersCarousalSlider extends StatelessWidget {
   // final List<Bidder>? bidders;
@@ -79,7 +78,8 @@ class TopFiveBiddersCarousalSlider extends StatelessWidget {
                                       ),
                                       Text(
                                         DateFormat('yMMMMd')
-                                            .format(DateTime.parse(bidder['created_at']) ??
+                                            .format(DateTime.parse(
+                                                    bidder['created_at']) ??
                                                 DateTime.now())
                                             .toString(),
                                         style: TextStyle(

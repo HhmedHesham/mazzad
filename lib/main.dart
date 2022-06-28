@@ -27,7 +27,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import './/constants.dart';
 import './/firebase_options.dart';
 import './/services/auth_service.dart';
-import './router.dart' as router;
+import 'utils/router.dart' as router;
 
 // the handler of Bckg message its work on its isloate ' on its own thread '
 // receive message when its on bckg

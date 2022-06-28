@@ -5,7 +5,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:mazzad/constants.dart';
 
 import './components/body.dart';
-import '../../size_config.dart';
+import '../../utils/size_config.dart';
 
 class LoginScreen extends StatelessWidget {
   static const routeName = '/login_screen';

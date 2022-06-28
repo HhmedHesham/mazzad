@@ -7,7 +7,7 @@ import '../../components/category_button.dart';
 import '../../components/search_textfield.dart';
 import '../../constants.dart';
 import '../../controller/categories_controller.dart';
-import '../../size_config.dart';
+import '../../utils/size_config.dart';
 
 class CategoriesScreen extends StatelessWidget {
   const CategoriesScreen({Key? key}) : super(key: key);

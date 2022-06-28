@@ -12,7 +12,7 @@ import 'package:mazzad/screens/login/login_screen.dart';
 import 'package:mazzad/services/auth_service.dart';
 import 'package:mazzad/services/validator.dart';
 
-import '../../../size_config.dart';
+import '../../../utils/size_config.dart';
 
 class Body extends StatefulWidget {
   const Body({Key? key}) : super(key: key);

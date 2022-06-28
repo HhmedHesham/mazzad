@@ -6,7 +6,7 @@ import 'package:mazzad/screens/add_auction/add_auction_screen.dart';
 import '../../constants.dart';
 import '../../screens/auctions/auctions.dart';
 import '../../screens/profile/profile_screen.dart';
-import '../../size_config.dart';
+import '../../utils/size_config.dart';
 // import 'package:mazzad/screens/shop/shop_screen.dart';
 
 import '../Shop/shop_screen.dart';
@@ -29,7 +29,7 @@ class _HomeScreenState extends State<HomeScreen> {
     Icons.person,
   ];
   List<Widget> navPages = [
-    Body(),
+    const Body(),
     const AuctionsScreen(),
     ShopScreen(),
     const ProfileScreen(),

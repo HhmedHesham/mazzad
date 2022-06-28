@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:mazzad/components/default_button.dart';
 import 'package:mazzad/components/dialogs/app_dialog.dart';
 import 'package:mazzad/constants.dart';
-import 'package:mazzad/size_config.dart';
+import 'package:mazzad/utils/size_config.dart';
 
 import '../../../controller/auction_controller.dart';
 

@@ -2,9 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mazzad/controller/bidders_controller.dart';
 
-import '../../../constants.dart';
 import '../../../controller/auction_controller.dart';
-import '../../../size_config.dart';
+import '../../../utils/size_config.dart';
 
 class BidderCard extends StatelessWidget {
   final int? auction_id;
@@ -32,16 +31,16 @@ class BidderCard extends StatelessWidget {
                           child: Card(
                             elevation: 4,
                             child: ListTile(
-                              leading: CircleAvatar(
+                              leading: const CircleAvatar(
                                 radius: 23,
                                 backgroundColor: Colors.transparent,
-                                backgroundImage: AssetImage(
-                                    Constants.kDummyBiddersList[index].image ??
-                                        "assets/images/profile_pic.png"),
+                                backgroundImage:
+                                    AssetImage("assets/images/profile_pic.png"),
                               ),
                               title: Text(
                                 // Constants.kDummyBiddersList[index].name ?? "unkwon",
-                                biddersController.biddersList[0]['name'].toString() ??
+                                biddersController.biddersList[0]['name']
+                                        .toString() ??
                                     "unkwon",
                                 style: const TextStyle(
                                   fontWeight: FontWeight.bold,

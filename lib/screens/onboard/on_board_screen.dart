@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import './components/body.dart';
-import '../../size_config.dart';
+import '../../utils/size_config.dart';
 
 class OnBoardScreen extends StatelessWidget {
   const OnBoardScreen({Key? key}) : super(key: key);

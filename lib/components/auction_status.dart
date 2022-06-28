@@ -3,7 +3,7 @@ import 'package:flutter_countdown_timer/current_remaining_time.dart';
 import 'package:flutter_countdown_timer/flutter_countdown_timer.dart';
 
 import '../constants.dart';
-import '../size_config.dart';
+import '../utils/size_config.dart';
 
 enum Status { live, scheduled, soon }
 
