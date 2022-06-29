@@ -1,5 +1,3 @@
-// ignore_for_file: use_key_in_widget_constructors, prefer_const_constructors, sized_box_for_whitespace, prefer_const_literals_to_create_immutables
-
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -25,7 +23,7 @@ class TopFiveBiddersCarousalSlider extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
                     Padding(
-                      padding: EdgeInsets.symmetric(
+                      padding: const EdgeInsets.symmetric(
                         horizontal: Constants.kHorizontalSpacing,
                       ),
                       child: Text(
@@ -44,7 +42,7 @@ class TopFiveBiddersCarousalSlider extends StatelessWidget {
                               elevation: 10,
                               child: ListTile(
                                 onTap: () {},
-                                leading: CircleAvatar(
+                                leading: const CircleAvatar(
                                   radius: 23,
                                   backgroundColor: Colors.transparent,
                                   backgroundImage: AssetImage(
@@ -59,7 +57,7 @@ class TopFiveBiddersCarousalSlider extends StatelessWidget {
                                       RichText(
                                         text: TextSpan(
                                           children: [
-                                            TextSpan(
+                                            const TextSpan(
                                               text: 'Bid By ',
                                               style: TextStyle(
                                                 color: Colors.grey,
@@ -67,7 +65,7 @@ class TopFiveBiddersCarousalSlider extends StatelessWidget {
                                             ),
                                             TextSpan(
                                               text: bidder['name'] ?? "unkwon",
-                                              style: TextStyle(
+                                              style: const TextStyle(
                                                 fontWeight: FontWeight.bold,
                                                 fontSize: 15,
                                                 color: Colors.black,
@@ -82,7 +80,7 @@ class TopFiveBiddersCarousalSlider extends StatelessWidget {
                                                     bidder['created_at']) ??
                                                 DateTime.now())
                                             .toString(),
-                                        style: TextStyle(
+                                        style: const TextStyle(
                                           color: Colors.grey,
                                           fontSize: 14,
                                         ),
@@ -92,7 +90,7 @@ class TopFiveBiddersCarousalSlider extends StatelessWidget {
                                 ),
                                 trailing: Text(
                                   '\$${bidder['price'] ?? 0.0}',
-                                  style: TextStyle(
+                                  style: const TextStyle(
                                     fontWeight: FontWeight.bold,
                                     fontSize: 20,
                                   ),

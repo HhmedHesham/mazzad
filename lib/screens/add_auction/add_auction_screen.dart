@@ -1,5 +1,3 @@
-// ignore_for_file: prefer_collection_literals, must_be_immutable
-
 import 'package:flutter/material.dart';
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'package:get/get.dart';
@@ -36,6 +34,15 @@ class AddAuctionScreen extends StatelessWidget {
         padding: const EdgeInsets.all(Constants.kHorizontalSpacing),
         keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
         children: [
+          // DefaultTextField(
+          //   title: 'product name',
+          //   validate: (String? value) {
+          //     if (value!.isEmpty) {
+          //       return 'enter name';
+          //     }
+          //     return null;
+          //   },
+          // ),
           defaultFormField(
             controller: nameTextController,
             type: TextInputType.text,
@@ -107,29 +114,6 @@ class AddAuctionScreen extends StatelessWidget {
               ),
             ],
           ),
-          // Row(
-          //   mainAxisAlignment: MainAxisAlignment.spaceAround,
-          //   children: [
-          //     Expanded(
-          //       flex: 1,
-          //       child:
-          //     ),
-          //     Column(
-          //       mainAxisSize: MainAxisSize.min,
-          //       crossAxisAlignment: CrossAxisAlignment.start,
-          //       children: [
-          //         const Text(
-          //           'Category',
-          //           style: TextStyle(color: Colors.grey),
-          //         ),
-          //         MyDropDownButton(
-          //           myDropDownItems: categoriesController.categoriesNameAndId,
-          //           isAuctionType: false,
-          //         ),
-          //       ],
-          //     ),
-          //   ],
-          // ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
@@ -227,9 +211,10 @@ class AddAuctionScreen extends StatelessWidget {
           ),
           DefaultButton(
             text: 'place auction',
-            onPressed: () {
+            onPressed: () async {
               Auction addedAuctionModel = Auction(
                 name: nameTextController.text,
+                // name: TextFieldController().auctionName,
                 images: ['ddd1', 'ddd2'],
                 type: Status.live.name == auctionController.auctionType
                     ? Status.live
@@ -243,11 +228,15 @@ class AddAuctionScreen extends StatelessWidget {
                 initial_price: double.parse(priceTextController.text) ?? 0.0,
                 keywords: ['keywords'],
               );
-              AppDialog.showAuctionPlacedDialog(
-                  context, 'Auction has been placed successfully');
-              auctionController.postAuction(addedAuctionModel)!.then((value) {
-                print(value);
-                return null;
+
+              await auctionController
+                  .postAuction(addedAuctionModel)!
+                  .then((value) {
+                value
+                    ? AppDialog.showAuctionPlacedDialog(
+                        context, 'Auction has been placed successfully')
+                    : AppDialog.showAuctionPlacedDialog(
+                        context, 'Can\'t place auction, check auction details');
               });
             },
           ),
@@ -277,7 +266,7 @@ class _MyDropDownButtonState extends State<MyDropDownButton> {
 
   @override
   Widget build(BuildContext context) {
-    var seen = Set<Map<String?, String?>>();
+    var seen = <Map<String?, String?>>{};
     List<Map<String?, String?>> uniquelist =
         widget.myDropDownItems.where((element) {
       bool exist = false;
