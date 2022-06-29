@@ -13,15 +13,9 @@ import '../../constants.dart';
 import '../../controller/categories_controller.dart';
 import '../../models/auction/auction.dart';
 
-// final AuctionController auctionController = Get.find<AuctionController>();
-// Auction? editMyAuction;
-
 class EditAuctionScreen extends StatelessWidget {
-  // final catController = Get.put(() => CategoriesController(), permanent: true);
   final categoriesController = Get.find<CategoriesController>();
-  // CategoriesController? categoriesController;
   final Auction myAuction;
-  //  var categoriesController =  Get.lazyPut(() => CategoriesController()..getCategories(), fenix: true);
 
   var nameTextController = TextEditingController();
   var descriptionTextController = TextEditingController();
@@ -43,12 +37,6 @@ class EditAuctionScreen extends StatelessWidget {
       ),
       body: GetBuilder<AuctionsByUserIdController>(
           init: AuctionsByUserIdController(),
-          initState: (state) {
-            // categoriesController = Get.find<CategoriesController>();
-            print(
-                '-----------i here------------> ${categoriesController.categoriesNameAndId}');
-            // print('-----------i here catController------------> ${catController.categoriesNameAndId}');
-          },
           builder: (auctionController) {
             return (!auctionController.initialized)
                 ? const Center(child: CircularProgressIndicator())
@@ -57,17 +45,6 @@ class EditAuctionScreen extends StatelessWidget {
                     keyboardDismissBehavior:
                         ScrollViewKeyboardDismissBehavior.onDrag,
                     children: [
-                      // CustomImageFormField(
-                      //   validator: (val) {
-                      //     if (val == null) return 'Pick a picture';
-                      //     return null;
-                      //   },
-                      //   onChanged: (_file) {
-                      //     print('-----_file.path------> ${_file.path}');
-                      //     myAuction.images[0] = _file.path;
-                      //     imagePath[0] = _file.path;
-                      //   },
-                      // ),
                       defaultFormField(
                         controller: nameTextController,
                         type: TextInputType.text,
@@ -200,8 +177,6 @@ class EditAuctionScreen extends StatelessWidget {
                         child: DefaultButton(
                           text: 'edit auction',
                           onPressed: () async {
-                            // print('-----myAuction.images------> ${myAuction.images}');
-                            // print('-----imagePath------> $imagePath');
                             Auction addedAuctionModel = Auction(
                               id: myAuction.id,
                               name: nameTextController.text,
