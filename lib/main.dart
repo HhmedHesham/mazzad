@@ -115,12 +115,12 @@ class MyApp extends StatelessWidget {
         String refreshToken = AuthService.box.read("refresh_token").toString();
         AuthService.updateToken(refreshToken: refreshToken);
       }
-      return const OnBoardScreen();
-    } else if (showOnBoard != null) {
       return const HomeScreen();
+    } else if (showOnBoard != null) {
+      return LoginScreen();
     } else {
       await sharedPreferences.setBool("onBoard", false);
-      return LoginScreen();
+      return const OnBoardScreen();
     }
   }
 
