@@ -5,6 +5,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:mazzad/services/auth_service.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 
+import 'models/bidder/bidder_model.dart';
 import 'utils/size_config.dart';
 
 class Constants {
@@ -130,4 +131,12 @@ class Constants {
       ),
     ),
   );
+  static List<BidderModel> dummyBidders = [
+    BidderModel(user: User(name: "Ahmed Hesham"), price: 300),
+    BidderModel(user: User(name: "Ahmed Gamal"), price: 270),
+    BidderModel(user: User(name: "Mahmoud "), price: 250),
+    BidderModel(user: User(name: "Ibrahim "), price: 245),
+    BidderModel(user: User(name: "Youssef Mahmoud"), price: 240),
+    BidderModel(user: User(name: "Menna Araffa "), price: 200),
+  ];
 }

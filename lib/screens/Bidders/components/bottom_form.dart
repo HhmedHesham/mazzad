@@ -3,23 +3,32 @@ import 'package:get/get.dart';
 import 'package:mazzad/components/default_button.dart';
 import 'package:mazzad/components/dialogs/app_dialog.dart';
 import 'package:mazzad/constants.dart';
+import 'package:mazzad/models/bidder/bidder_model.dart';
 import 'package:mazzad/utils/size_config.dart';
 
 import '../../../controller/auction_controller.dart';
 import '../../../controller/bidders_controller.dart';
 
-class BottomForm extends StatelessWidget {
-  BottomForm({
+class BottomForm extends StatefulWidget {
+  const BottomForm({
     Key? key,
     required this.auction_id,
   }) : super(key: key);
   final int? auction_id;
+
+  @override
+  State<BottomForm> createState() => _BottomFormState();
+}
+
+class _BottomFormState extends State<BottomForm> {
   final int? bidPlaced = 0;
+
   final TextEditingController? placeBidController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return GetBuilder<BiddersController>(
-        init: BiddersController(auction_id!),
+        init: BiddersController(widget.auction_id!),
         builder: (biddersController) {
           return (!biddersController.initialized)
               ? const Center(child: CircularProgressIndicator())
@@ -72,11 +81,21 @@ class BottomForm extends StatelessWidget {
                           Expanded(
                             child: DefaultButton(
                               onPressed: () {
-                                biddersController.placeBid(auction_id!, int.parse(placeBidController!.text.toString()));
+                                setState(() {
+                                  Constants.dummyBidders.insert(
+                                      0,
+                                      BidderModel(
+                                          user: User(name: "AhmedH"),
+                                          price: int.parse(
+                                              placeBidController!.text)));
+                                });
+                                // biddersController.placeBid(auction_id!, int.parse(placeBidController!.text.toString()));
                                 AppDialog.showAuctionPlacedDialog(
                                     context, 'you have been bid successfully');
+                                print(Constants.dummyBidders);
                                 AuctionController.recordUserBehavior(
-                                    auctionId: auction_id!, action: "bid");
+                                    auctionId: widget.auction_id!,
+                                    action: "bid");
                               },
                               text: 'Bid',
                             ),

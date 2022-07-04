@@ -12,7 +12,7 @@ _$_Auction _$$_AuctionFromJson(Map<String, dynamic> json) => _$_Auction(
       name: json['name'] as String,
       description: json['description'] as String,
       images:
-          (json['images'] as List<dynamic>).map((e) => e as String).toList(),
+          (json['images'] as List<dynamic>).map((e) => e as String?).toList(),
       initial_price: (json['initial_price'] as num).toDouble(),
       start_date: DateTime.parse(json['start_date'] as String),
       end_date: DateTime.parse(json['end_date'] as String),

@@ -110,6 +110,7 @@ class AppDialog {
         ), onTimeout: () {
       Get.back();
       Get.back();
+      Get.back();
     });
   }
 }

@@ -44,7 +44,7 @@ class Router {
       case AuctionDetailsScreen.routeName:
         return SlideRoute(page: AuctionDetailsScreen());
       case MainBidders.routeName:
-        return SlideRoute(page: const MainBidders());
+        return SlideRoute(page: MainBidders());
       case ContactUsScreen.routeName:
         return SlideRoute(page: const ContactUsScreen());
       case EditProfileScreen.routeName:

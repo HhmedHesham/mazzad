@@ -1,7 +1,6 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:intl/intl.dart';
 import 'package:mazzad/controller/bidders_controller.dart';
 
 import '../../../constants.dart';
@@ -36,7 +35,7 @@ class TopFiveBiddersCarousalSlider extends StatelessWidget {
                       ),
                     ),
                     CarouselSlider(
-                      items: biddersController.topFivebiddersList
+                      items: Constants.dummyBidders
                           .map(
                             (bidder) => Card(
                               elevation: 10,
@@ -64,7 +63,8 @@ class TopFiveBiddersCarousalSlider extends StatelessWidget {
                                               ),
                                             ),
                                             TextSpan(
-                                              text: bidder['name'] ?? "unkwon",
+                                              text:
+                                                  bidder.user!.name ?? "unkwon",
                                               style: const TextStyle(
                                                 fontWeight: FontWeight.bold,
                                                 fontSize: 15,
@@ -75,11 +75,7 @@ class TopFiveBiddersCarousalSlider extends StatelessWidget {
                                         ),
                                       ),
                                       Text(
-                                        DateFormat('yMMMMd')
-                                            .format(DateTime.parse(
-                                                    bidder['created_at']) ??
-                                                DateTime.now())
-                                            .toString(),
+                                        DateTime.now().toString(),
                                         style: const TextStyle(
                                           color: Colors.grey,
                                           fontSize: 14,
@@ -89,7 +85,7 @@ class TopFiveBiddersCarousalSlider extends StatelessWidget {
                                   ),
                                 ),
                                 trailing: Text(
-                                  '\$${bidder['price'] ?? 0.0}',
+                                  '\$${bidder.price ?? 0.0}',
                                   style: const TextStyle(
                                     fontWeight: FontWeight.bold,
                                     fontSize: 20,
