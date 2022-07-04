@@ -29,7 +29,6 @@ class _MyAuctionsScreenState extends State<MyAuctionsScreen> {
 
   @override
   Widget build(BuildContext context) {
-    // Get.put<AuctionController>(AuctionController());
     return Scaffold(
       appBar: AppBar(
         title: const Text('My Auctions'),
@@ -78,7 +77,7 @@ class _MyAuctionsScreenState extends State<MyAuctionsScreen> {
                     if (_selectedTabBar == 0) {
                       return LiveByUserId();
                     } else if (_selectedTabBar == 1) {
-                      return const ScheduledByUserId();
+                      return ScheduledByUserId();
                     } else {
                       return LiveByUserId();
                     }
@@ -93,14 +92,9 @@ class _MyAuctionsScreenState extends State<MyAuctionsScreen> {
   }
 }
 
-class LiveByUserId extends StatefulWidget {
-  @override
-  State<LiveByUserId> createState() => _LiveByUserIdState();
-}
-
-class _LiveByUserIdState extends State<LiveByUserId> {
+class LiveByUserId extends StatelessWidget {
   final RefreshController refreshController = RefreshController(
-    initialRefresh: true,
+    initialRefresh: false,
   );
 
   @override
@@ -168,16 +162,9 @@ class _LiveByUserIdState extends State<LiveByUserId> {
   }
 }
 
-class ScheduledByUserId extends StatefulWidget {
-  const ScheduledByUserId({Key? key}) : super(key: key);
-
-  @override
-  State<ScheduledByUserId> createState() => _ScheduledByUserIdState();
-}
-
-class _ScheduledByUserIdState extends State<ScheduledByUserId> {
+class ScheduledByUserId extends StatelessWidget {
   final RefreshController refreshController = RefreshController(
-    initialRefresh: true,
+    initialRefresh: false,
   );
 
   @override
@@ -220,23 +207,19 @@ class _ScheduledByUserIdState extends State<ScheduledByUserId> {
               }
             },
             controller: refreshController,
-            child: (!controller.initialized)
-                ? const Center(child: CircularProgressIndicator())
-                : GridView.builder(
-                    itemCount: controller.scheduledAuctionsByUserIdLength.value,
-                    keyboardDismissBehavior:
-                        ScrollViewKeyboardDismissBehavior.onDrag,
-                    gridDelegate:
-                        const SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisSpacing: Constants.kHorizontalSpacing,
-                      mainAxisSpacing: Constants.kHorizontalSpacing / 2,
-                      crossAxisCount: 2,
-                    ),
-                    itemBuilder: (ctx, index) => AuctionItemEdit(
-                      myAuction:
-                          controller.scheduledAuctionsByUserId[index].myAuction,
-                    ),
-                  ),
+            child: GridView.builder(
+              itemCount: controller.scheduledAuctionsByUserIdLength.value,
+              keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisSpacing: Constants.kHorizontalSpacing,
+                mainAxisSpacing: Constants.kHorizontalSpacing / 2,
+                crossAxisCount: 2,
+              ),
+              itemBuilder: (ctx, index) => AuctionItemEdit(
+                myAuction:
+                    controller.scheduledAuctionsByUserId[index].myAuction,
+              ),
+            ),
           );
         });
   }
