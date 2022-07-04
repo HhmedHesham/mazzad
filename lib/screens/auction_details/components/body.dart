@@ -62,7 +62,7 @@ class Body extends StatelessWidget {
                             ),
                             Constants.kSmallHorizontalSpacing,
                             Text(
-                              'bidder.name',
+                              'Mazen',
                               style: TextStyle(
                                 fontWeight: FontWeight.bold,
                               ),

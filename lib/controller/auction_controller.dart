@@ -12,11 +12,11 @@ import '../components/auction_status.dart';
 import '../models/auction/auction.dart';
 
 class AuctionController extends GetxController {
-  final Rx<String?> _liveAuctionNextPage = ''.obs;
+  final Rx<String?>? _liveAuctionNextPage = ''.obs;
   final Rx<String?> _scheduledAuctionNextPage = ''.obs;
   final Rx<String?> _upcomingAuctionNextPage = ''.obs;
 
-  Rx<String?> get liveAuctionNextPage => _liveAuctionNextPage;
+  Rx<String?>? get liveAuctionNextPage => _liveAuctionNextPage;
   Rx<String?> get scheduledAuctionNextPage => _scheduledAuctionNextPage;
   Rx<String?> get upcomingAuctionNextPage => _upcomingAuctionNextPage;
   // for our live auctions
@@ -70,7 +70,7 @@ class AuctionController extends GetxController {
   }
 
   void updateLiveNextPage({String? newNextPage}) {
-    _liveAuctionNextPage.value = newNextPage;
+    _liveAuctionNextPage!.value = newNextPage;
     update();
   }
 
@@ -120,7 +120,7 @@ class AuctionController extends GetxController {
         }
         List<Auction> allAuctions = await AuctionService.getAuctions(
           type: Status.live,
-          cursor: _liveAuctionNextPage.value,
+          cursor: _liveAuctionNextPage!.value,
         );
         _liveAuctions.addAll(allAuctions
             .map(

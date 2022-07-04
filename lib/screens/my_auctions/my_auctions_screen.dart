@@ -17,8 +17,6 @@ class MyAuctionsScreen extends StatefulWidget {
 }
 
 class _MyAuctionsScreenState extends State<MyAuctionsScreen> {
-  // var _isLoading = true.obs;
-  // AuctionController? auctionController;
   final List<Tab> _tabs = const [
     Tab(
       text: 'Live',
@@ -45,8 +43,6 @@ class _MyAuctionsScreenState extends State<MyAuctionsScreen> {
           ),
           child: Column(
             children: [
-              // Constants.kSmallVerticalSpacing,
-              // const SearchTextField(),
               Constants.kSmallVerticalSpacing,
               Container(
                 height: 40,
@@ -104,20 +100,8 @@ class LiveByUserId extends StatefulWidget {
 
 class _LiveByUserIdState extends State<LiveByUserId> {
   final RefreshController refreshController = RefreshController(
-    initialRefresh: false,
+    initialRefresh: true,
   );
-
-  // var isLoading1 = true.obs;
-  // var isLoading2 = true.obs;
-  // AuctionsByUserIdController? auctionController;
-
-  @override
-  void didChangeDependencies() {
-    // auctionController = Get.find<AuctionsByUserIdController>();
-    // isLoading1.value = false;
-    // isLoading2.value = false;
-    super.didChangeDependencies();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -192,23 +176,9 @@ class ScheduledByUserId extends StatefulWidget {
 }
 
 class _ScheduledByUserIdState extends State<ScheduledByUserId> {
-  // final controller = Get.find<AuctionController>();
-
   final RefreshController refreshController = RefreshController(
-    initialRefresh: false,
+    initialRefresh: true,
   );
-
-  // var isLoading1 = true.obs;
-  // var isLoading2 = true.obs;
-  // AuctionsByUserIdController? auctionController;
-
-  @override
-  void didChangeDependencies() {
-    // auctionController = Get.find<AuctionsByUserIdController>();
-    // isLoading1.value = false;
-    // isLoading2.value = false;
-    super.didChangeDependencies();
-  }
 
   @override
   Widget build(BuildContext context) {

@@ -16,8 +16,6 @@ class AuctionItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        print('AUCTION ITEM IMAGESSS');
-        print(myAuction.images is List<String?>);
         Get.find<DetailsController>().argumentsValues = {
           'name': myAuction.name,
           'description': myAuction.description,

@@ -16,12 +16,10 @@ import '../../models/auction/auction.dart';
 class EditAuctionScreen extends StatelessWidget {
   final categoriesController = Get.find<CategoriesController>();
   final Auction myAuction;
-
   var nameTextController = TextEditingController();
   var descriptionTextController = TextEditingController();
   var priceTextController = TextEditingController();
   DateTime startDateTextValue = DateTime.now();
-  // var imagePath = [].obs;
 
   EditAuctionScreen({Key? key, required this.myAuction}) : super(key: key);
   static const String routeName = '/add_product_screen';
@@ -70,7 +68,6 @@ class EditAuctionScreen extends StatelessWidget {
                         label: '',
                       ),
                       const SizedBox(height: 10),
-
                       defaultFormField(
                         controller: priceTextController,
                         type: TextInputType.text,
@@ -83,7 +80,6 @@ class EditAuctionScreen extends StatelessWidget {
                         label: '',
                       ),
                       const SizedBox(height: 10),
-                      // Constants.kSmallVerticalSpacing,
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -126,7 +122,6 @@ class EditAuctionScreen extends StatelessWidget {
                                 ),
                         ],
                       ),
-
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
@@ -172,40 +167,38 @@ class EditAuctionScreen extends StatelessWidget {
                           ),
                         ],
                       ),
-                      Positioned(
-                        bottom: 50,
-                        child: DefaultButton(
-                          text: 'edit auction',
-                          onPressed: () async {
-                            Auction addedAuctionModel = Auction(
-                              id: myAuction.id,
-                              name: nameTextController.text,
-                              images: myAuction.images,
-                              type: Status.live.name ==
-                                      auctionController.auctionType
-                                  ? Status.live
-                                  : Status.scheduled.name ==
-                                          auctionController.auctionType
-                                      ? Status.scheduled
-                                      : Status.soon,
-                              start_date: startDateTextValue,
-                              end_date: myAuction.end_date,
-                              description: descriptionTextController.text,
-                              category_id: auctionController.categoryId,
-                              initial_price:
-                                  double.parse(priceTextController.text),
-                              keywords: myAuction.keywords,
-                            );
-                            bool? isAuctionAddedSuccessfully =
-                                await auctionController
-                                    .editAuction(addedAuctionModel)!
-                                    .then((value) {
-                              print(value);
-                              Get.off(() => MyAuctionsScreen());
-                              return null;
-                            });
-                          },
-                        ),
+                      Constants.kBigVertcialSpacing,
+                      DefaultButton(
+                        text: 'edit auction',
+                        onPressed: () async {
+                          Auction addedAuctionModel = Auction(
+                            id: myAuction.id,
+                            name: nameTextController.text,
+                            images: myAuction.images,
+                            type: Status.live.name ==
+                                    auctionController.auctionType
+                                ? Status.live
+                                : Status.scheduled.name ==
+                                        auctionController.auctionType
+                                    ? Status.scheduled
+                                    : Status.soon,
+                            start_date: startDateTextValue,
+                            end_date: myAuction.end_date,
+                            description: descriptionTextController.text,
+                            category_id: auctionController.categoryId,
+                            initial_price:
+                                double.parse(priceTextController.text),
+                            keywords: myAuction.keywords,
+                          );
+                          bool? isAuctionAddedSuccessfully =
+                              await auctionController
+                                  .editAuction(addedAuctionModel)!
+                                  .then((value) {
+                            print(value);
+                            Get.off(() => MyAuctionsScreen());
+                            return null;
+                          });
+                        },
                       ),
                     ],
                   );
@@ -244,7 +237,6 @@ class _MyDropDownButtonState extends State<MyDropDownButton> {
 
   @override
   void initState() {
-    print('------------------> ${widget.myDropDownItems}');
     var seen = Set<Map<String?, String?>>();
     uniquelist = widget.myDropDownItems.where((element) {
       bool exist = false;
@@ -277,7 +269,6 @@ class _MyDropDownButtonState extends State<MyDropDownButton> {
     return (!auctionController.initialized)
         ? const Center(child: CircularProgressIndicator())
         : DropdownButton<String>(
-            // value: dropdownValue ?? widget.myDropDownItems[0]['name'],
             value: dropdownValue ?? uniquelist![0]['name'],
             icon: const Icon(Icons.arrow_downward),
             elevation: 16,
@@ -289,13 +280,9 @@ class _MyDropDownButtonState extends State<MyDropDownButton> {
               if (widget.isAuctionType!) {
                 auctionController.updateAuctionName(newAuctionType: newValue);
                 print('---> auctionType: ${auctionController.auctionType}');
-                // print('---> auctionController.addedAuctionModel!: ${addedAuctionModel.data}');
-                // addedAuctionModel.data!.type = newValue;
               } else {
-                // Map<String?, String?> mySelectedItem = widget.myDropDownItems
                 Map<String?, String?> mySelectedItem = uniquelist!
                     .firstWhere((element) => element['name'] == dropdownValue);
-                // addedAuctionModel.data!.categoryId = mySelectedItem['id'];
                 auctionController.updateCategoryAcutionId(
                   mySelectedCategoryId: int.parse(
                     mySelectedItem['id']!,
@@ -304,7 +291,6 @@ class _MyDropDownButtonState extends State<MyDropDownButton> {
                 print('---> categoryId: ${auctionController.categoryId}');
               }
             },
-            // items: widget.myDropDownItems.map<DropdownMenuItem<String>>((Map? value) {
             items: uniquelist!.map<DropdownMenuItem<String>>((Map? value) {
               return DropdownMenuItem<String>(
                 value: value!['name'],

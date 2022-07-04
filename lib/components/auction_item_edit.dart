@@ -14,9 +14,9 @@ class AuctionItemEdit extends StatelessWidget {
   final Auction myAuction;
 
   const AuctionItemEdit({Key? key, required this.myAuction}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
+    print(myAuction.name);
     return GestureDetector(
       onTap: () {
         Get.find<DetailsController>().argumentsValues = {
@@ -90,7 +90,7 @@ class AuctionItemEdit extends StatelessWidget {
                         ),
                         child: IconButton(
                           onPressed: () {
-                            Get.off(
+                            Get.to(
                                 () => EditAuctionScreen(myAuction: myAuction));
                           },
                           icon: const Icon(Icons.edit),

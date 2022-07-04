@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:cron/cron.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
@@ -41,7 +39,6 @@ Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
 void main() async {
   Logger.level = Level.error;
   await GetStorage.init();
-  HttpOverrides.global = MyHttpOverrides();
   // firebase intilaization
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
@@ -120,10 +117,10 @@ class MyApp extends StatelessWidget {
       }
       return const OnBoardScreen();
     } else if (showOnBoard != null) {
-      return LoginScreen();
+      return const HomeScreen();
     } else {
       await sharedPreferences.setBool("onBoard", false);
-      return const HomeScreen();
+      return LoginScreen();
     }
   }
 
@@ -163,15 +160,5 @@ class Binding extends Bindings {
     Get.lazyPut(() => AuctionsByUserIdController(), fenix: true);
     Get.lazyPut(() => CategoriesController(), fenix: true);
     Get.lazyPut(() => AuctionsByCategoryController(), fenix: false);
-  }
-}
-
-// متشلش ده والا البعبع هيطلعلك
-class MyHttpOverrides extends HttpOverrides {
-  @override
-  HttpClient createHttpClient(SecurityContext? context) {
-    return super.createHttpClient(context)
-      ..badCertificateCallback =
-          (X509Certificate cert, String host, int port) => true;
   }
 }
