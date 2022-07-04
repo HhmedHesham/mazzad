@@ -19,6 +19,8 @@ import 'package:mazzad/controller/my_auctions_controller.dart';
 import 'package:mazzad/controller/profile_controller.dart';
 import 'package:mazzad/controller/text_field_controller.dart';
 import 'package:mazzad/screens/home/home_screen.dart';
+import 'package:mazzad/screens/login/login_screen.dart';
+import 'package:mazzad/screens/onboard/on_board_screen.dart';
 import 'package:mazzad/services/fcm_service.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -116,9 +118,9 @@ class MyApp extends StatelessWidget {
         String refreshToken = AuthService.box.read("refresh_token").toString();
         AuthService.updateToken(refreshToken: refreshToken);
       }
-      return const HomeScreen();
+      return const OnBoardScreen();
     } else if (showOnBoard != null) {
-      return const HomeScreen();
+      return LoginScreen();
     } else {
       await sharedPreferences.setBool("onBoard", false);
       return const HomeScreen();
