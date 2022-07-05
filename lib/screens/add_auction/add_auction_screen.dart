@@ -225,7 +225,7 @@ class AddAuctionScreen extends StatelessWidget {
                 end_date: endDateTextValue,
                 description: descriptionTextController.text,
                 category_id: auctionController.categoryId,
-                initial_price: double.parse(priceTextController.text) ?? 0.0,
+                initial_price: double.parse(priceTextController.text),
                 keywords: ['keywords'],
               );
 

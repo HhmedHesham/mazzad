@@ -22,14 +22,11 @@ class SearchController extends GetxController {
       );
 
       final responseMap = jsonDecode(response.body)['data']['data'];
-      print('this isn the json decoded response ');
-      print(responseMap);
       searchModel =
           (responseMap as Iterable).map((e) => Auction.fromJson(e)).toList();
 
       print(searchModel);
       // searchModel = SearchModel.fromJson(responseMap['data']);
-      print('---> response.body: ${response.body}');
       update();
     } catch (error) {
       print('---> ERROR.SearchController.search(): $error');

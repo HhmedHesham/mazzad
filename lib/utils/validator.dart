@@ -4,7 +4,7 @@ class Validator {
       return 'Name can\'t be empty';
     }
     if (name.isValidPassword) {
-      return 'Enter ur full name correctly';
+      return 'Enter your full name correctly';
     }
     return null;
   }
@@ -31,12 +31,12 @@ class Validator {
 
   static String? validatePhone(String? phoneNumber) {
     if (phoneNumber!.isEmpty) {
-      return 'Enter ur phone Number plz';
+      return 'Enter your phone number please';
     }
     if (!phoneNumber.isValidPhone ||
         phoneNumber.length > 16 ||
         phoneNumber.length < 9) {
-      return 'Enter ur correct phone number';
+      return 'Enter your correct phone number';
     }
     return null;
   }

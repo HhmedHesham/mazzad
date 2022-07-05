@@ -24,7 +24,7 @@ mixin _$Auction {
   int get category_id => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
   String get description => throw _privateConstructorUsedError;
-  List<String> get images => throw _privateConstructorUsedError;
+  List<String?> get images => throw _privateConstructorUsedError;
   double get initial_price => throw _privateConstructorUsedError;
   DateTime get start_date => throw _privateConstructorUsedError;
   DateTime get end_date => throw _privateConstructorUsedError;
@@ -45,7 +45,7 @@ abstract class $AuctionCopyWith<$Res> {
       int category_id,
       String name,
       String description,
-      List<String> images,
+      List<String?> images,
       double initial_price,
       DateTime start_date,
       DateTime end_date,
@@ -94,7 +94,7 @@ class _$AuctionCopyWithImpl<$Res> implements $AuctionCopyWith<$Res> {
       images: images == freezed
           ? _value.images
           : images // ignore: cast_nullable_to_non_nullable
-              as List<String>,
+              as List<String?>,
       initial_price: initial_price == freezed
           ? _value.initial_price
           : initial_price // ignore: cast_nullable_to_non_nullable
@@ -130,7 +130,7 @@ abstract class _$$_AuctionCopyWith<$Res> implements $AuctionCopyWith<$Res> {
       int category_id,
       String name,
       String description,
-      List<String> images,
+      List<String?> images,
       double initial_price,
       DateTime start_date,
       DateTime end_date,
@@ -180,7 +180,7 @@ class __$$_AuctionCopyWithImpl<$Res> extends _$AuctionCopyWithImpl<$Res>
       images: images == freezed
           ? _value._images
           : images // ignore: cast_nullable_to_non_nullable
-              as List<String>,
+              as List<String?>,
       initial_price: initial_price == freezed
           ? _value.initial_price
           : initial_price // ignore: cast_nullable_to_non_nullable
@@ -213,7 +213,7 @@ class _$_Auction extends _Auction {
       required this.category_id,
       required this.name,
       required this.description,
-      required final List<String> images,
+      required final List<String?> images,
       required this.initial_price,
       required this.start_date,
       required this.end_date,
@@ -235,9 +235,9 @@ class _$_Auction extends _Auction {
   final String name;
   @override
   final String description;
-  final List<String> _images;
+  final List<String?> _images;
   @override
-  List<String> get images {
+  List<String?> get images {
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_images);
   }
@@ -315,7 +315,7 @@ abstract class _Auction extends Auction {
       required final int category_id,
       required final String name,
       required final String description,
-      required final List<String> images,
+      required final List<String?> images,
       required final double initial_price,
       required final DateTime start_date,
       required final DateTime end_date,
@@ -334,7 +334,7 @@ abstract class _Auction extends Auction {
   @override
   String get description => throw _privateConstructorUsedError;
   @override
-  List<String> get images => throw _privateConstructorUsedError;
+  List<String?> get images => throw _privateConstructorUsedError;
   @override
   double get initial_price => throw _privateConstructorUsedError;
   @override

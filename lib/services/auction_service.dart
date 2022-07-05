@@ -171,8 +171,7 @@ class AuctionService {
       );
       if (response.statusCode == 200) {
         final resbody = json.decode(response.body);
-        print('ddddddddddddddddddddddddddddddddd');
-        print(resbody['data']);
+
         if (type == Status.live) {
           Get.find<AuctionController>()
               .updateLiveNextPage(newNextPage: resbody['data']['next_cursor']);

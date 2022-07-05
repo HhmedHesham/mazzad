@@ -17,8 +17,10 @@ class MainBidders extends StatelessWidget {
           'Bidders',
         ),
       ),
-      body: BidderCard(auction_id: auction_id),
-      bottomSheet: BottomForm(auction_id: auction_id),
+      body: const BidderCard(),
+      bottomSheet: BottomForm(
+        auction_id: auction_id,
+      ),
     );
   }
 }

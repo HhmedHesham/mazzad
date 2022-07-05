@@ -14,7 +14,7 @@ class Auction with _$Auction {
     required int category_id,
     required String name,
     required String description,
-    required List<String> images,
+    required List<String?> images,
     required double initial_price,
     required DateTime start_date,
     required DateTime end_date,

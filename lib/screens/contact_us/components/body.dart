@@ -43,7 +43,7 @@ class Body extends StatelessWidget {
                 onPressed: () {
                   //submitting the complain
                   AppDialog.showContactUsDialog(
-                      context, 'ur message has been successfully sent');
+                      context, 'Your message has been successfully sent');
                 },
               ),
               Constants.kBigVertcialSpacing,

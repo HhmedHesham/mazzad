@@ -25,6 +25,7 @@ class AuctionItem extends StatelessWidget {
           'date_time': myAuction.end_date,
           'id': myAuction.id
         };
+        print(Get.find<DetailsController>().argumentsValues!['image']);
         Get.toNamed(
           AuctionDetailsScreen.routeName,
         );
@@ -37,13 +38,13 @@ class AuctionItem extends StatelessWidget {
             Expanded(
               flex: 10,
               child: Center(
-                child: (myAuction.images[0].contains('uploads'))
+                child: (myAuction.images[0]!.contains('uploads'))
                     ? Image.asset(
                         'assets/images/uploads_image.png',
                         fit: BoxFit.fitWidth,
                       )
                     : Image.network(
-                        myAuction.images[0],
+                        myAuction.images[0]!,
                         fit: BoxFit.fitWidth,
                       ),
               ),
