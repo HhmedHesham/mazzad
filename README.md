@@ -15,6 +15,10 @@ If there is an auction that the user may intersted in a notifications using FCM 
 |------|-------|
 |<img src="https://user-images.githubusercontent.com/57070673/177432912-468e368b-16e6-47e0-936c-94dc6e2cf9a4.png" width="400">|<img src="https://user-images.githubusercontent.com/57070673/177432941-fee6ffab-8eba-4cfa-a7ad-fd77d1d404fb.png" width="400">|
 
-| 5 | 6|
+| 5 | 6 | 7|
+|------|-------|------|
+|<img src="https://user-images.githubusercontent.com/57070673/177433612-0bd66c04-60b0-419f-85e4-24e9e8c075b5.png" width="250">|<img src="https://user-images.githubusercontent.com/57070673/177433615-192b9198-4512-4bef-a2af-51d6cf94bae7.png" width="250">|<img src="https://user-images.githubusercontent.com/57070673/177433608-a86a542a-f3a5-40b0-9f11-ebf5d8f8120a.png" width="250">|
+
+| 8 | 9|
 |------|-------|
 |<img src="https://user-images.githubusercontent.com/57070673/177432957-c2c05467-add4-4976-abfd-907345b23662.png" width="400">|<img src="https://user-images.githubusercontent.com/57070673/177432909-9f5ac9f2-56a7-430b-adcd-c41f0f7ad1bd.png" width="400">|
