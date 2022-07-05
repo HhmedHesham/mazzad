@@ -22,3 +22,9 @@
 | 8 | 9|
 |------|-------|
 |<img src="https://user-images.githubusercontent.com/57070673/177432957-c2c05467-add4-4976-abfd-907345b23662.png" width="400">|<img src="https://user-images.githubusercontent.com/57070673/177432909-9f5ac9f2-56a7-430b-adcd-c41f0f7ad1bd.png" width="400">|
+
+## ✨ Requirements
+* Any Operating System (ie. MacOS X, Linux, Windows)
+* Any IDE with Flutter SDK installed (ie. IntelliJ, Android Studio, VSCode etc)
+* A little knowledge of Dart and Flutter
+* A brain to think 🤓🤓
