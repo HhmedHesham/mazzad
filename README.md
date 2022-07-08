@@ -5,7 +5,6 @@
 <br>If there is an auction that the user may intersted in a notifications using FCM service is sended to him.</br>
 ## 📸 ScreenShots
 
-<!-- <img src="ss/1.png"/> -->
 
 | 1 | 2 | 3|
 |------|-------|------|
