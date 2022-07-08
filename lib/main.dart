@@ -4,28 +4,13 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:logger/logger.dart';
-import 'package:mazzad/controller/auction_controller.dart';
-import 'package:mazzad/controller/auctions_by_category_controller.dart';
-import 'package:mazzad/controller/auctions_by_user_id_controller.dart';
-import 'package:mazzad/controller/categories_controller.dart';
-import 'package:mazzad/controller/details_controller.dart';
-import 'package:mazzad/controller/home_controller.dart';
-import 'package:mazzad/controller/my_auctions_controller.dart';
-import 'package:mazzad/controller/profile_controller.dart';
-import 'package:mazzad/controller/text_field_controller.dart';
-import 'package:mazzad/screens/home/home_screen.dart';
-import 'package:mazzad/screens/login/login_screen.dart';
-import 'package:mazzad/screens/onboard/on_board_screen.dart';
+import 'package:mazzad/screens/main/main_screen.dart';
 import 'package:mazzad/services/fcm_service.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
-import './/constants.dart';
 import './/firebase_options.dart';
 import './/services/auth_service.dart';
-import 'utils/router.dart' as router;
 
 // the handler of Bckg message its work on its isloate ' on its own thread '
 // receive message when its on bckg
@@ -96,69 +81,7 @@ void main() async {
     ],
   ).then(
     (_) => runApp(
-      const MyApp(),
+      const MainScreen(),
     ),
   );
-}
-
-class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
-
-  Future<Widget> getUser() async {
-    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
-    bool? showOnBoard = sharedPreferences.getBool("onBoard");
-    if (showOnBoard != null &&
-        await AuthService.token != "empty access_token") {
-      int duration = await AuthService.box.read("duration");
-      DateTime dateTime = DateTime.fromMillisecondsSinceEpoch(duration);
-      if (DateTime.now().isAfter(dateTime)) {
-        String refreshToken = AuthService.box.read("refresh_token").toString();
-        AuthService.updateToken(refreshToken: refreshToken);
-      }
-      return const HomeScreen();
-    } else if (showOnBoard != null) {
-      return LoginScreen();
-    } else {
-      await sharedPreferences.setBool("onBoard", false);
-      return const OnBoardScreen();
-    }
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return GetMaterialApp(
-      initialBinding: Binding(),
-      debugShowCheckedModeBanner: false,
-      home: FutureBuilder(
-        future: getUser(),
-        builder: (context, snapshot) => !snapshot.hasData
-            ? const Center(
-                child: CircularProgressIndicator(),
-              )
-            : snapshot.connectionState == ConnectionState.done
-                ? snapshot.data as Widget
-                : const Center(
-                    child: CircularProgressIndicator(),
-                  ),
-      ),
-      theme: Constants.kMazzadTheme,
-      title: 'Mazzad',
-      onGenerateRoute: router.Router.onGenerateRoute,
-    );
-  }
-}
-
-class Binding extends Bindings {
-  @override
-  void dependencies() {
-    Get.lazyPut(() => HomeController(), fenix: true);
-    Get.lazyPut(() => ProfileController(), fenix: true);
-    Get.lazyPut(() => MyAuctionsController(), fenix: true);
-    Get.lazyPut(() => DetailsController(), fenix: true);
-    Get.lazyPut(() => TextFieldController(), fenix: true);
-    Get.lazyPut(() => AuctionController(anyFunc: 'recommended'), fenix: true);
-    Get.lazyPut(() => AuctionsByUserIdController(), fenix: true);
-    Get.lazyPut(() => CategoriesController(), fenix: true);
-    Get.lazyPut(() => AuctionsByCategoryController(), fenix: false);
-  }
 }
